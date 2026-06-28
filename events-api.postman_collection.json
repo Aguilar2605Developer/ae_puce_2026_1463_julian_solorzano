@@ -1,0 +1,199 @@
+{
+  "info": {
+    "name": "events-api",
+    "_postman_id": "events-api-collection",
+    "description": "Colección de endpoints para el microservicio events con autenticación AWS Cognito",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "PUBLIC - GET all events",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "events"]
+        },
+        "description": "Endpoint público - no requiere token"
+      }
+    },
+    {
+      "name": "PUBLIC - GET event by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/events/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "events", "1"]
+        },
+        "description": "Endpoint público - no requiere token"
+      }
+    },
+    {
+      "name": "PRIVATE - POST create event",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <ACCESS_TOKEN>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Concierto Rock\",\n  \"venue\": \"Estadio Olímpico\",\n  \"totalTickets\": 100\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "events"]
+        },
+        "description": "Endpoint privado - requiere token de Cognito"
+      }
+    },
+    {
+      "name": "PRIVATE - POST create attendee",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <ACCESS_TOKEN>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Juan Perez\",\n  \"email\": \"juan@mail.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendees",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "attendees"]
+        },
+        "description": "Endpoint privado - requiere token de Cognito"
+      }
+    },
+    {
+      "name": "PRIVATE - POST create reservation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <ACCESS_TOKEN>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"attendeeId\": 1,\n  \"eventId\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/reservations",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "reservations"]
+        },
+        "description": "Endpoint privado - requiere token de Cognito"
+      }
+    },
+    {
+      "name": "PRIVATE - PUT cancel reservation",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <ACCESS_TOKEN>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/reservations/1/cancel",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "reservations", "1", "cancel"]
+        },
+        "description": "Endpoint privado - requiere token de Cognito"
+      }
+    },
+    {
+      "name": "PRIVATE - GET all reservations",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <ACCESS_TOKEN>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/reservations",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "reservations"]
+        },
+        "description": "Endpoint privado - requiere token de Cognito"
+      }
+    },
+    {
+      "name": "PRIVATE - GET all attendees",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <ACCESS_TOKEN>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/attendees",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "attendees"]
+        },
+        "description": "Endpoint privado - requiere token de Cognito"
+      }
+    }
+  ]
+}
